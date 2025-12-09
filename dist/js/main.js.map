@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.js"],"names":["console","log"],"mappings":"AACAA,QAAAC,IAAA,0BAAA","file":"main.js","sourcesContent":["// main.js\r\nconsole.log('Gulp project is running!');\r\n"]}
