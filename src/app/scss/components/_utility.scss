@@ -1,0 +1,10 @@
+/* Клас для приховування контенту */
+.content-hidden {
+  display: none !important;
+}
+
+/* Клас для обертання стрілки на 180 градусів */
+.arrow-rotated {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease; /* Додаємо плавний перехід */
+}

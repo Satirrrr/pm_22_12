@@ -6,131 +6,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume</title>
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/index.min.css">
-
-
 </head>
 <body>
 <div class="container resume-wrapper">
     <div class="row g-0">
 
-        <!-- LEFT SIDE -->
         <div class="col-6 left-panel text-white">
             <div class="text-center mt-4">
                 <div class="photo-placeholder"></div>
                 <div class="text-block">
-                    <h2 class="name mt-3">NOEL TAYLOR</h2>
+                    <h2 class="name mt-3" id="personName">NOEL TAYLOR</h2>
                     <p class="position">GRAPHIC & WEB DESIGNER</p>
                 </div>
             </div>
 
             <section class="mt-5 px-4">
-                <h3 class="about-title">
-                    <img src="images/bis_ic.png" alt="About Icon" class="icon me-2" width="30">
+                <h3 class="section-header"> <img src="images/bis_ic.png" alt="About Icon" class="icon me-2" width="30">
                     About me
                 </h3>
-                <p class="section-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry...
-                </p>
+                <div class="collapsible-content">
+                    <p class="section-text">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                    </p>
+                </div>
             </section>
 
             <section class="mt-4 px-4 timeline-section timeline-education">
-                <h3 class="education-title">
-                    <img src="images/edu_ic.png" alt="Education Icon" class="icon me-2" width="30">
+                <h3 class="section-header"> <img src="images/edu_ic.png" alt="Education Icon" class="icon me-2" width="30">
                     Education
                 </h3>
-                <div class="timeline-item mt-3">
-                    <h6>STANFORD UNIVERSITY</h6>
-                    <p class="small">MASTER DEGREE GRADUATE<br>2011 – 2013</p>
-                </div>
-                <div class="timeline-item mt-3">
-                    <h6>UNIVERSITY OF CHICAGO</h6>
-                    <p class="small">BACHELOR DEGREE GRADUATE<br>2007 – 2010</p>
+                <div class="collapsible-content">
+                    <div class="timeline-item mt-3">
+                        <h6>STANFORD UNIVERSITY</h6>
+                        <p class="small">MASTER DEGREE GRADUATE<br>2011 – 2013</p>
+                    </div>
+                    <div class="timeline-item mt-3">
+                        <h6>UNIVERSITY OF CHICAGO</h6>
+                        <p class="small">BACHELOR DEGREE GRADUATE<br>2007 – 2010</p>
+                    </div>
                 </div>
             </section>
 
 
             <section class="mt-4 px-4 mb-4">
-                <h3 class="skills-title">
+                <h3 class="skills-title section-header">
                     <img src="images/dia-ic.png" alt="Skills Icon" class="icon me-2" width="30">
                     Skills
                 </h3>
-                <ul class="skills-list">
-                    <li>Adobe Photoshop <span class="rating">★★★★☆</span></li>
-                    <li>Adobe Illustrator <span class="rating">★★★★☆</span></li>
-                    <li>Microsoft Word <span class="rating">★★★★☆</span></li>
-                    <li>Microsoft Powerpoint <span class="rating">★★★★☆</span></li>
-                    <li>HTML5 / CSS3 <span class="rating">★★★★☆</span></li>
-                </ul>
+                <div class="collapsible-content">
+                    <ul class="skills-list" id="dynamicSkillsContainer">
+                    </ul>
+                </div>
             </section>
         </div>
 
-        <!-- RIGHT SIDE -->
         <div class="col-6 right-panel p-5">
             <section class="timeline-section timeline-contact">
-                <h3 class="contact-title">
+                <h3 class="contact-title section-header">
                     <img src="images/hum_ic.jpg" alt="User Icon" class="icon me-2" width="30">
                     Contact me
                 </h3>
-                <ul class="contact-list">
-                    <li class="timeline-item">+1-718-310-5588</li>
-                    <li class="timeline-item">+1-313-381-8167</li>
-                    <li class="timeline-item">www.yourwebsite.com</li>
-                    <li class="timeline-item">yourinfo@gmail.com</li>
-                    <li class="timeline-item">769 Prudence Street Lincoln Park, MI 48146</li>
-                </ul>
+                <div class="collapsible-content">
+                    <ul class="contact-list">
+                        <li class="timeline-item">+1-718-310-5588</li>
+                        <li class="timeline-item">+1-313-381-8167</li>
+                        <li class="timeline-item">www.yourwebsite.com</li>
+                        <li class="timeline-item">yourinfo@gmail.com</li>
+                        <li class="timeline-item">769 Prudence Street Lincoln Park, MI 48146</li>
+                    </ul>
+                </div>
             </section>
 
-
-
             <section class="mt-5 timeline-section timeline-job">
-                <h3 class="job-title">
+                <h3 class="job-title section-header">
                     <img src="images/lug_ic.jpg" alt="Briefcase Icon" class="icon me-2" width="30">
                     Job Experience
                 </h3>
-                <div class="timeline-item mt-3">
-                    <h6>WEB DESIGNER <span class="text-primary">2020 – Present</span></h6>
-                    <p class="small text-muted">Creative Agency / Chicago</p>
-                    <p class="small">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                </div>
-                <div class="timeline-item mt-3">
-                    <h6>GRAPHIC DESIGNER <span class="text-primary">2015 – 2020</span></h6>
-                    <p class="small text-muted">Creative Market / Chicago</p>
-                    <p class="small">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                </div>
-                <div class="timeline-item mt-3">
-                    <h6>MARKETING MANAGER <span class="text-primary">2013 – 2015</span></h6>
-                    <p class="small text-muted">Manufacturing Agency / NJ</p>
-                    <p class="small">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                <div class="collapsible-content">
+                    <div class="timeline-item mt-3">
+                        <h6>WEB DESIGNER <span class="text-primary">2020 – Present</span></h6>
+                        <p class="small text-muted">Creative Agency / Chicago</p>
+                        <p class="small">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="timeline-item mt-3">
+                        <h6>GRAPHIC DESIGNER <span class="text-primary">2015 – 2020</span></h6>
+                        <p class="small text-muted">Creative Market / Chicago</p>
+                        <p class="small">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="timeline-item mt-3">
+                        <h6>MARKETING MANAGER <span class="text-primary">2013 – 2015</span></h6>
+                        <p class="small text-muted">Manufacturing Agency / NJ</p>
+                        <p class="small">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
                 </div>
             </section>
 
 
-
             <section class="mt-5 timeline-section timeline-references">
-                <h3 class="references-title">
+                <h3 class="references-title section-header">
                     <img src="images/soc_ic.jpg" alt="Group Icon" class="icon me-2" width="30">
                     References
                 </h3>
-                <div class="timeline-item mt-3">
-                    <h6>DARWIN B. MAGANA</h6>
-                    <p class="small">
-                        2813 Shobe Lane Mancos, CO<br>
-                        Tel: +1-970-533-3393<br>
-                        Email: www.yourwebsite.com
-                    </p>
-                </div>
-                <div class="timeline-item mt-3">
-                    <h6>ROBERT J. DELVIN</h6>
-                    <p class="small">
-                        2119 Fairfax Drive Newark, NJ<br>
-                        Tel: +1-908-987-5103<br>
-                        Email: www.yourwebsite.com
-                    </p>
+                <div class="collapsible-content">
+                    <div class="timeline-item mt-3">
+                        <h6>DARWIN B. MAGANA</h6>
+                        <p class="small">
+                            2813 Shobe Lane Mancos, CO<br>
+                            Tel: +1-970-533-3393<br>
+                            Email: www.yourwebsite.com
+                        </p>
+                    </div>
+                    <div class="timeline-item mt-3">
+                        <h6>ROBERT J. DELVIN</h6>
+                        <p class="small">
+                            2119 Fairfax Drive Newark, NJ<br>
+                            Tel: +1-908-987-5103<br>
+                            Email: www.yourwebsite.com
+                        </p>
+                    </div>
                 </div>
             </section>
 
@@ -139,7 +135,6 @@
     </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
 </body>
