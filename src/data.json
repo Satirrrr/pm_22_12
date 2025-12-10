@@ -1,0 +1,37 @@
+{
+  "person": {
+    "firstName": "NOEL T.",
+    "lastName": "GATES",
+    "position": "GRAPHIC & WEB DESIGNER",
+    "aboutMe": "Highly motivated and results-oriented professional with 10+ years of experience in graphic and web design, specializing in modern UI/UX principles and full-stack development. Seeking to leverage skills in a challenging environment."
+  },
+  "skills": [
+    { "name": "Adobe Photoshop", "rating": "★★★★☆" },
+    { "name": "Adobe Illustrator", "rating": "★★★★☆" },
+    { "name": "Microsoft Word", "rating": "★★★★☆" },
+    { "name": "HTML5 / CSS3", "rating": "★★★★★" },
+    { "name": "JavaScript (ES6+)", "rating": "★★★★☆" },
+    { "name": "SCSS / SASS", "rating": "★★★★★" },
+    { "name": "Gulp / Webpack", "rating": "★★★☆☆" }
+  ],
+  "jobExperience": [
+    {
+      "title": "WEB DESIGNER",
+      "years": "2020 – Present",
+      "company": "Creative Agency / Chicago",
+      "description": "Led the redesign of the company's flagship e-commerce platform, resulting in a 25% increase in conversion rates."
+    },
+    {
+      "title": "GRAPHIC DESIGNER",
+      "years": "2015 – 2020",
+      "company": "Creative Market / Chicago",
+      "description": "Developed over 50 brand identity packages for international clients, ensuring high standards of visual consistency."
+    },
+    {
+      "title": "MARKETING MANAGER",
+      "years": "2013 – 2015",
+      "company": "Manufacturing Agency / NJ",
+      "description": "Managed digital marketing campaigns, successfully optimizing content for SEO and increasing organic traffic."
+    }
+  ]
+}

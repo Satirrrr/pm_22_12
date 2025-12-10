@@ -1,29 +1,45 @@
-// --- ЗАВДАННЯ 3: Масив даних для генерації розмітки ---
-const skillsData = [
-    { name: "Adobe Photoshop", rating: "★★★★☆" },
-    { name: "Adobe Illustrator", rating: "★★★★☆" },
-    { name: "Microsoft Word", rating: "★★★★☆" },
-    { name: "Microsoft Powerpoint", rating: "★★★★☆" },
-    { name: "HTML5 / CSS3", rating: "★★★★★" },
-    { name: "JavaScript", rating: "★★★★☆" },
-    { name: "Gulp / Webpack", rating: "★★★☆☆" },
-    { name: "Git / Version Control", rating: "★★★★☆" }
-];
+
+/**
+ * Генерує розмітку досвіду роботи на основі масиву даних.
+ * @param {Array} jobs - Масив об'єктів досвіду роботи.
+ */
+function generateJobExperience(jobs) {
+    const container = document.querySelector('#jobExperienceContainer .collapsible-content');
+
+    if (!container) return;
+
+    // Очистити вміст контейнера перед вставленням
+    container.innerHTML = '';
+
+    let htmlContent = '';
+    jobs.forEach(job => {
+        htmlContent += `
+            <div class="timeline-item mt-3">
+                <h6>${job.title} <span class="text-primary">${job.years}</span></h6>
+                <p class="small text-muted">${job.company}</p>
+                <p class="small">${job.description}</p>
+            </div>
+        `;
+    });
+
+    container.innerHTML = htmlContent;
+}
 
 
-// --- ЗАВДАННЯ 3: Функція генерації та вставки розмітки ---
-function generateDynamicSkills() {
+/**
+ * Генерує розмітку навичок на основі масиву даних.
+ * @param {Array} skills - Масив об'єктів навичок.
+ */
+function generateDynamicSkills(skills) {
     const container = document.getElementById('dynamicSkillsContainer');
 
     if (!container) return;
 
-    // 1. Очистити вміст контейнера перед вставленням
+    // Очистити вміст контейнера перед вставленням
     container.innerHTML = '';
 
-    // 2. Генерувати розмітку
     let htmlContent = '';
-    skillsData.forEach(skill => {
-        // Створення HTML-розмітки на основі даних масиву
+    skills.forEach(skill => {
         htmlContent += `
             <li>
                 ${skill.name} <span class="rating">${skill.rating}</span>
@@ -31,33 +47,28 @@ function generateDynamicSkills() {
         `;
     });
 
-    // 3. Вставити розмітку
     container.innerHTML = htmlContent;
 }
 
 
-// --- ЗАВДАННЯ 2: Функція для перемикання видимості та стрілок ---
+/**
+ * Ініціалізація блоків, що згортаються/розгортаються.
+ */
 function initCollapsibleBlocks() {
-    // Обираємо всі заголовки з класом "section-header"
     const headers = document.querySelectorAll('.section-header');
 
     headers.forEach(header => {
-        // 1. Створюємо та додаємо піктограму-стрілку (▼)
+        // код ініціалізації стрілки та обробника кліку
         const arrow = document.createElement('span');
         arrow.textContent = '▼';
         arrow.className = 'collapse-arrow';
         header.appendChild(arrow);
 
-        // Знаходимо контент, який потрібно згортати (він знаходиться у .collapsible-content)
         const content = header.closest('section').querySelector('.collapsible-content');
 
-        // 2. Прив'язуємо обробник події click
         header.addEventListener('click', () => {
             if (content) {
-                // • Перемикає видимість контенту
                 content.classList.toggle('content-hidden');
-
-                // • Змінює орієнтацію стрілки
                 arrow.classList.toggle('arrow-rotated');
             }
         });
@@ -65,19 +76,55 @@ function initCollapsibleBlocks() {
 }
 
 
-// --- Головний виклик: Запуск функцій після завантаження документа ---
-document.addEventListener('DOMContentLoaded', () => {
+//ОСНОВНА ФУНКЦІЯ AJAX
 
-    // --- ЗАВДАННЯ 1: Підстановка імені користувача ---
-    const fullName = "NOEL T.GATES"; // Ім'я для підстановки
-    const nameElement = document.getElementById('personName');
+/**
+ * Завантаження та обробка JSON-даних.
+ */
+async function loadDataAndPopulate() {
 
-    if (nameElement) {
-        // Запис у текстовий вміст елемента (без вставлення HTML)
-        nameElement.textContent = fullName;
+    const dataPath = 'data.json';
+
+    try {
+        const response = await fetch(dataPath);
+
+        // Перевіряємо, чи успішна відповідь (код 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Заміна захардкодженних значень на дані з JSON
+
+        // 1. Підстановка повного імені (firstName + lastName)
+        const fullName = `${data.person.firstName} ${data.person.lastName}`;
+        const nameElement = document.getElementById('personName');
+        if (nameElement) {
+            nameElement.textContent = fullName;
+        }
+
+        // 2. Підстановка посади
+        const positionElement = document.querySelector('.position');
+        if (positionElement) {
+            positionElement.textContent = data.person.position;
+        }
+
+        // 3. Побудова списків: Skills
+        generateDynamicSkills(data.skills);
+
+        // 4. Побудова списків: Job Experience
+        generateJobExperience(data.jobExperience);
+
+
+    } catch (error) {
+        // Відображення короткого службового повідомлення у разі помилки
+        console.error('Failed to load JSON data:', error);
+        alert('Помилка завантаження даних (JSON). Перевірте, чи запущено локальний сервер.');
+    } finally {
+        initCollapsibleBlocks();
     }
+}
 
-    // Виклик функцій для завдань 2 та 3
-    generateDynamicSkills(); // Спочатку генеруємо вміст
-    initCollapsibleBlocks(); // Потім додаємо для нього функцію згортання
-});
+
+document.addEventListener('DOMContentLoaded', loadDataAndPopulate);
