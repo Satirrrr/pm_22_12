@@ -1,0 +1,30 @@
+.skills-list {
+  @extend %list-reset;
+
+  columns: 2;
+  column-gap: 40px;
+
+  li {
+    break-inside: avoid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $font-base + 1px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+  }
+
+  .rating {
+    color: $color-primary;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+.contact-list {
+  @extend %list-reset; // Повторне використання коду
+
+  li {
+    margin-bottom: 7px;
+  }
+}

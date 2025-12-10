@@ -1,0 +1,31 @@
+.timeline-section {
+  position: relative;
+  padding-left: 40px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: $color-primary;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+
+    &::before {
+      // Використання міксіна
+      @include circle-marker(12px, $color-primary);
+      left: -14px;
+    }
+  }
+}
+
+
+.timeline-education .timeline-item::before { top: 8px; }
+.timeline-contact .timeline-item::before { left: -30px; top: 4px;}
+.timeline-job .timeline-item::before { top: 10px; left: -30px;}
+.timeline-references .timeline-item::before { top: 6px; left: -30px; }

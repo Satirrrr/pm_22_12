@@ -1,0 +1,17 @@
+// Mixin
+@mixin circle-marker($size, $color, $border-width: 2px) {
+  content: "";
+  position: absolute;
+  width: $size;
+  height: $size;
+  background: $color;
+  border: $border-width solid $color;
+  border-radius: 50%;
+}
+
+// @extend
+%list-reset {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}

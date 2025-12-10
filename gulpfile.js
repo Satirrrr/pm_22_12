@@ -9,42 +9,36 @@ const imagemin = require('gulp-imagemin');
 const del = require('del');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const gulp = require('gulp'); // Залишаємо require('gulp') для старих тасків
+const gulp = require('gulp'); // залишаємо для старих тасків
 const fileInclude = require('gulp-file-include');
-
-
-// Шляхи
+const rename = require('gulp-rename');
+//  Шляхи
 const path = {
     src: 'src/',
     dist: 'dist/'
 };
 
-// Очистка папки dist
+//  Очистка папки dist
 function clean() {
     return del([path.dist]);
 }
 
-// ## 📄 HTML
-// Оновлений таск: тепер шукає **всі .html файли безпосередньо в src/ та будь-яких підпапках**
-// Якщо index.html в src/, він його знайде.
-// Якщо інші .html файли є в src/pages/, він їх також знайде.
+//  HTML
 function html() {
-    return src(path.src + 'app/**/*.html') // шукає всі HTML у src/app
-        .pipe(dest(path.dist))              // копіює у dist/
-        .pipe(browserSync.stream());        // оновлює браузер
+    return src(path.src + 'app/**/*.html')   // шукає всі HTML у src/app
+        .pipe(fileInclude())                 // підтримка інклудів
+        .pipe(dest(path.dist))               // копіює у dist/
+        .pipe(browserSync.stream());         // оновлює браузер
 }
 
-
-
-// ---
-
-// ## 🎨 SCSS / CSS
+//  SCSS / CSS
 function styles() {
-    return src(path.src + 'app/scss/**/*.scss', { allowEmpty: true })
+    return src(path.src + 'app/scss/main.scss', { allowEmpty: true }) // компілюємо тільки main.scss
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(cssnano())
+        .pipe(rename('index.min.css')) // перейменовуємо у index.min.css
         .pipe(sourcemaps.write('.'))
         .pipe(dest(path.dist + 'css/'))
         .pipe(browserSync.stream());
@@ -52,9 +46,7 @@ function styles() {
 
 
 
-// ---
-
-// ## 💻 JS
+// JS
 function scripts() {
     return src(path.src + 'app/js/**/*.js', { allowEmpty: true })
         .pipe(plumber())
@@ -66,10 +58,7 @@ function scripts() {
         .pipe(browserSync.stream());
 }
 
-
-// ---
-
-// ## 🖼️ Images
+//  Images
 function images() {
     return src(path.src + 'app/images/**/*', { allowEmpty: true })
         .pipe(imagemin())
@@ -77,10 +66,7 @@ function images() {
         .pipe(browserSync.stream());
 }
 
-
-// ---
-
-// ## 🚀 Сервер та слідкування за змінами
+//  Сервер та слідкування за змінами
 function serve() {
     browserSync.init({
         server: {
@@ -95,40 +81,31 @@ function serve() {
     watch(path.src + 'app/images/**/*', images);
 }
 
-
-// ---
-
-// ## 📦 Bootstrap таски (залишаються без змін)
-
-// TASK: копіювання Bootstrap CSS у dist/css
+//  Bootstrap таски
 gulp.task('bootstrap-css', function () {
     return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
         .pipe(gulp.dest('dist/css'));
 });
 
-// TASK: копіювання Bootstrap JS у dist/js
 gulp.task('bootstrap-js', function () {
     return gulp.src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
         .pipe(gulp.dest('dist/js'));
 });
 
-// TASK для запуску обох
 gulp.task('bootstrap', gulp.parallel('bootstrap-css', 'bootstrap-js'));
 
-// ---
-
-// ## ⚙️ Експорти та Default таск
+//  Експорти
 exports.clean = clean;
 exports.html = html;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
 exports.serve = serve;
-exports.bootstrap = gulp.task('bootstrap'); // Експортуємо Bootstrap таск
+exports.bootstrap = gulp.task('bootstrap');
 
-// Default
+//  Default
 exports.default = series(
     clean,
-    parallel(html, styles, scripts, images, 'bootstrap'), // Додано 'bootstrap'
+    parallel(html, styles, scripts, images, 'bootstrap'),
     serve
 );
